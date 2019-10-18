@@ -94,10 +94,8 @@ public class TemperatureSeriesAnalysis {
         else{
             double closest = temperatureSeries[0];
             for(double num: temperatureSeries){
-                if(Math.abs(num) == Math.abs(closest)){
-                    if(closest > 0 || num > 0){
-                        closest = Math.abs(closest);
-                    }
+                if(Math.abs(num) == Math.abs(closest) && (closest > 0 || num > 0)){
+                    closest = Math.abs(closest);
                 }
                 if(Math.abs(num) < Math.abs(closest)){
                     closest = num;
@@ -114,10 +112,9 @@ public class TemperatureSeriesAnalysis {
         else{
             double closest = temperatureSeries[0];
             for(double num: temperatureSeries){
-                if(Math.abs(num - tempValue) == Math.abs(closest - tempValue)){
-                    if(closest > 0 || num > 0){
-                        closest = Math.max(closest, num);
-                    }
+                if((Math.abs(num - tempValue) == Math.abs(closest - tempValue)) && (closest > 0 || num > 0)){
+                    closest = Math.max(closest, num);
+
                 }
                 if(Math.abs(num - tempValue) < Math.abs(closest - tempValue)){
                     closest = num;
