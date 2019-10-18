@@ -17,7 +17,8 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] tempSeries) {
         temperatureSeries = new double[tempSeries.length];
-        System.arraycopy(tempSeries, 0, temperatureSeries, 0, tempSeries.length);
+        System.arraycopy(tempSeries, 0,
+                temperatureSeries, 0, tempSeries.length);
         this.size += temperatureSeries.length;
 
     }
@@ -44,11 +45,11 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         } else {
             double avg = this.average();
-            double sum_of_squares = 0;
+            double sumOfSquares = 0;
             for (double num : temperatureSeries) {
-                sum_of_squares += (num - avg) * (num - avg);
+                sumOfSquares += (num - avg) * (num - avg);
             }
-            return Math.sqrt(sum_of_squares / temperatureSeries.length);
+            return Math.sqrt(sumOfSquares / temperatureSeries.length);
 
         }
 
@@ -192,7 +193,7 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         for (double temp : temps) {
             if (temp < MIN_TEMPERATURE) {
-                throw new InputMismatchException("Temperature below 0 degrees K");
+                throw new InputMismatchException("Temperature below 0K");
             }
             addTemp(temp);
         }

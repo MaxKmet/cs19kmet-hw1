@@ -19,6 +19,12 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);
     }
 
+    @Test
+    public void testDefaultConstructor() {
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
+        assertEquals(0, seriesAnalysis.getSize());
+    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void testAverageWithEmptyArray() {
@@ -91,7 +97,7 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testMin() {
-        double[] temperatureSeries = {600, 470, -170, 430, 300};
+        double[] temperatureSeries = {470, 600, -170, 430, 300};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = -170;
 
@@ -115,8 +121,7 @@ public class TemperatureSeriesAnalysisTest {
     public void testMaxWithEmptyArray() {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-
-        seriesAnalysis.min();
+        seriesAnalysis.max();
     }
 
     @Test
@@ -176,7 +181,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
-        seriesAnalysis.findTempClosestToZero();
+        seriesAnalysis.findTempClosestToValue(4.0);
     }
 
     @Test
