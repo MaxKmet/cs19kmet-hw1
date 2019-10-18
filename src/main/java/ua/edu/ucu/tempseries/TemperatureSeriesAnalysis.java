@@ -3,27 +3,27 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    private double[] temperatureSeries;
     private static final double MIN_TEMPERATURE = -273.0;
     private static final double PRECISION = .0000001;
-
-    public int getSize() {
-        return size;
-    }
+    private double[] temperatureSeries;
 
     private int size;
 
     public TemperatureSeriesAnalysis() {
-        double[] series = new double[]{};
-        this.temperatureSeries = series;
+        this.temperatureSeries = new double[]{};
         size = 0;
 
     }
 
     public TemperatureSeriesAnalysis(double[] tempSeries) {
-        this.temperatureSeries = tempSeries;
+        temperatureSeries = new double[tempSeries.length];
+        System.arraycopy(tempSeries, 0, temperatureSeries, 0, tempSeries.length);
         this.size += temperatureSeries.length;
 
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public double average() {
@@ -91,7 +91,8 @@ public class TemperatureSeriesAnalysis {
             double closest = temperatureSeries[0];
             for (double num : temperatureSeries) {
 
-                if (( Math.abs(Math.abs(num) - Math.abs(closest)) < this.PRECISION ) && (closest > 0 || num > 0)) {
+                if (Math.abs(Math.abs(num) - Math.abs(
+                        closest)) < PRECISION && (closest > 0 || num > 0)) {
                     closest = Math.abs(closest);
                 }
                 if (Math.abs(num) < Math.abs(closest)) {
@@ -109,8 +110,9 @@ public class TemperatureSeriesAnalysis {
             double closest = temperatureSeries[0];
             for (double num : temperatureSeries) {
 
-                if (( Math.abs((Math.abs(num - tempValue) - Math.abs(
-                        closest - tempValue))) < PRECISION ) && (closest > 0 || num > 0)) {
+                if (Math.abs((Math.abs(num - tempValue) - Math.abs(
+                        closest - tempValue))) < PRECISION && (
+                                closest > 0 || num > 0)) {
                     closest = Math.max(closest, num);
 
                 }
@@ -133,7 +135,7 @@ public class TemperatureSeriesAnalysis {
             }
         }
 
-        double valuesLess[] = new double[numValues];
+        double[] valuesLess = new double[numValues];
         int i = 0;
         for (double num : temperatureSeries) {
             if (num < tempValue) {
@@ -155,8 +157,7 @@ public class TemperatureSeriesAnalysis {
             }
         }
 
-        double valuesGreater[] = new double[numValues];
-        final int length = temperatureSeries.length;
+        double[] valuesGreater = new double[numValues];
         int i = 0;
         for (double num : temperatureSeries) {
             if (num > tempValue) {
@@ -167,7 +168,8 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        return new TempSummaryStatistics(this.average(), this.deviation(), this.min(), this.max());
+        return new TempSummaryStatistics(
+                this.average(), this.deviation(), this.min(), this.max());
     }
 
     private int addTemp(double temp) {
