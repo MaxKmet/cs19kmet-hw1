@@ -1,12 +1,28 @@
 package ua.edu.ucu.tempseries;
 
 public class TempSummaryStatistics {
-    double avgTemp;
-    double devTemp;
-    double minTemp;
-    double maxTemp;
+    private double avgTemp;
+    private double devTemp;
+    private double minTemp;
+    private double maxTemp;
 
-    public TempSummaryStatistics(double avg,double dev,double min,double max){
+    public double getAvgTemp() {
+        return avgTemp;
+    }
+
+    public double getDevTemp() {
+        return devTemp;
+    }
+
+    public double getMinTemp() {
+        return minTemp;
+    }
+
+    public double getMaxTemp() {
+        return maxTemp;
+    }
+
+    public TempSummaryStatistics(double avg, double dev, double min, double max) {
         this.avgTemp = avg;
         this.devTemp = dev;
         this.minTemp = min;
